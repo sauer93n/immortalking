@@ -1,0 +1,5 @@
+immortalkingapi/config/.env
+immortalkingapi/db
+immortalkingapi/node_modules
+immortalkingshop/node_modules
+immortalkingshopadmin/node_modules

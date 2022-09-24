@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Gilroy Medium';
+    src: url('../../fonts/Gilroy/Gilroy-Medium.ttf');
+}
+
+.cart-item-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.cart-item-wrapper{
+    background-color: white;
+    width: calc(100% + 66px);
+    min-height: 94px;
+    margin-left: -33px;
+    padding-right: 25px;
+    display: flex;
+}
+
+/* .content-wrapper{
+    padding-left: 0;
+    padding-right: 0;
+} */
+
+.cart-item-info{
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+    flex: 6;
+}
+
+.cart-item-name{
+    font-family: 'Gilroy Medium';
+    font-size: 20px;
+    margin-left: 25px;
+    max-width: 100px;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+}
+
+.cart-item-size{
+    font-family: 'Gilroy Medium';
+    font-size: 20px;
+    margin: auto;
+}
+
+.cart-item-quantity{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex: 1;
+    font-family: 'Gilroy Medium';
+    font-size: 20px;
+    max-width: 120px;
+    width: 100%;
+}
+
+.cart-item-image{
+    max-width: 80px;
+    width: 100%;
+}
+
+.cart-item-image img{
+    width: 100%;
+    height: auto;
+}
+
+.cart-item-quantity-change{
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.cart-item-total-price{
+    font-family: 'Gilroy Medium';
+    font-size: 20px;
+    align-self: center;
+    max-width: 100px;
+    width: 100%;
+}
+
+.cart-list-footer{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -33px;
+    padding-right: 25px;
+    margin-top: 25px;
+    gap: 25px;
+}
+
+.cart-total-price{
+    font-family: 'GIlroy Medium';
+    font-size: 42px;
+    color: white;
+}
+
+.cart-list-checkout{
+    border: none;
+    border-radius: 10px;
+    font-family: 'Gilroy Medium';
+    font-size: 24px;
+    padding: 10px 16px;
+}
+
+/* .cart-item-image{
+    height: 0;
+    width: 100%;
+    max-width: 80px;
+    padding-top: 100%;
+    position: relative;
+}
+
+.cart-item-image img{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+} */

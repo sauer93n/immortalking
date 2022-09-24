@@ -1,0 +1,198 @@
+@font-face {
+    font-family: 'Gilroy Bold';
+    src: url('../../../fonts/Gilroy/Gilroy-Bold.ttf');
+}
+
+.product-card-modal-wrapper{
+    width: 100%;
+    /*height: 100%;*/
+    padding: 42px 30px 120px 32px;
+    display: flex;
+}
+
+.product-card-modal-content{
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}
+
+.product-card-modal-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex: 1.2;
+}
+
+.product-card-modal-view-other-images{
+    width: 100%;
+}
+
+.product-card-modal-view-main-image{
+    position: relative;
+    height: 0;
+    max-width: 415px;
+    width: 100%;
+    padding-top: 100%;
+}
+
+.product-card-modal-view-main-image img{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.product-card-modal-view-thumbnail{
+    position: relative;
+    height: 0;
+    max-width: 60px;
+    width: 100%;
+    padding-top: 100%;
+}
+
+.product-card-modal-view-thumbnail img{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.product-card-modal-view-other-images{
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    gap: 25px;
+}
+
+.product-card-modal-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -5px;
+    /*padding: 0px 40px;*/
+    width: 100%;
+    flex: 1;
+}
+
+.product-card-modal-info-name{
+    font-family: Gilroy Bold;
+    font-size: 44px;
+    line-height: 1;
+    text-align: left;
+    vertical-align: text-top;
+    color: black;
+}
+
+.product-card-modal-info-type{
+    font-family: "Gilroy Medium";
+    font-size: 28px;
+    color: #5c5c5c;
+}
+
+.product-card-modal-info-desc{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-family: "Gilroy Medium";
+    word-break: break-word;
+    text-align: start;
+    font-size: 20px;
+    color: #5c5c5c;
+    overflow: hidden;
+}
+
+.product-card-modal-info-desc-paragraph{
+    margin: 0;
+    padding: 0;
+}
+
+.product-card-modal-info-icon{
+    max-width: 25px;
+}
+
+.product-card-modal-info-icon img{
+    height: auto;
+    width: 100%;
+}
+
+.product-card-modal-info-manufacturing{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-card-modal-info-printType,
+.product-card-modal-info-clothType,
+.product-card-modal-info-cutType{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.product-card-modal-info-printType-name,
+.product-card-modal-info-clothType-name,
+.product-card-modal-info-cutType-name{
+    font-family: "Gilroy Medium";
+    text-align: start;
+    font-size: 15px;
+    color: #5c5c5c;
+}
+
+.product-card-modal-info-sizes{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.size-choose{
+    font-family: "Gilroy Bold";
+    font-size: 30px;
+    -webkit-box-shadow: 0px 0px 8px 4px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 8px 4px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 8px 4px rgba(34, 60, 80, 0.2);
+    border: 0px;
+    cursor: pointer;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.size-choose.active{
+    border: 4px solid black;
+    -webkit-box-shadow: 0px 0px 0px 0px;
+    -moz-box-shadow: 0px 0px 0px 0px;
+    box-shadow: 0px 0px 0px 0px;
+}
+
+.product-card-modal-info-buy-actions{
+    display: flex;
+    gap: 15px;
+    align-items: baseline;
+}
+
+.fast-buy-link{
+    margin-top: 40px;
+    border: 3px solid black;
+    border-radius: 10px;
+    line-height: 1;
+    font-size: 15px;
+    font-family: "Gilroy Bold";
+    font-weight: 900;
+    display: flex;
+    padding: 15px 7px;
+    cursor: pointer;
+}
+
+.get-in-cart{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 12px 30px;
+    font-family: "Gilroy Bold";
+    font-size: 15px;
+    border-radius: 10px;
+}

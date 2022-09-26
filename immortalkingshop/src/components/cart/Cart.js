@@ -1,62 +1,38 @@
 import axios from 'axios';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { decreaseProductQuantity, increaseProductQuantity } from '../../features/cart/cartSlice'
 import './Cart.css';
 
-class Cart extends React.Component{
-    constructor(props) {
-        super(props);
+function Cart(props) {
+    const cart = useSelector(state => state.cart);
+    const dispatch = useDispatch();
 
-        this.state = {
-            cart: [],
-        }
-    }
+    // const changeItemQuantity = (product, action) => {
 
-    componentDidMount(){
-        let cart = [];
+    //     let products = this.state.cart.slice();
 
-        if (localStorage.getItem('cart') !== null){
-            JSON.parse(localStorage.getItem('cart')).map(
-                item => {
-                    axios.get("http://localhost:5000/products/" + item._id)
-                        .then((data) => cart.push({...data.data, ...item}))
-                        .then(() => this.setState({
-                            cart: cart,
-                        }));
-                }
-            );
-        }
-        else{
-            this.setState({
-                cart: cart,
-            })
-        }
-    }
+    //     if (action === 'minus' && product.quantity > 0){
+    //         product.quantity -= 1;
+    //     }
+    //     else if (action === 'plus' && product.quantity < 10){
+    //         product.quantity += 1;
+    //     }
 
-    changeItemQuantity(product, action){
+    //     console.log(product);
 
-        let products = this.state.cart.slice();
+    //     if (product.quantity === 0){
+    //         products = products.filter(item => item._id != product._id);
+    //     }
 
-        if (action === 'minus' && product.quantity > 0){
-            product.quantity -= 1;
-        }
-        else if (action === 'plus' && product.quantity < 10){
-            product.quantity += 1;
-        }
+    //     this.setState({
+    //         cart: products,
+    //     })
 
-        console.log(product);
+    //     localStorage.setItem('cart', JSON.stringify(products));
+    // }
 
-        if (product.quantity === 0){
-            products = products.filter(item => item._id != product._id);
-        }
-
-        this.setState({
-            cart: products,
-        })
-
-        localStorage.setItem('cart', JSON.stringify(products));
-    }
-
-    renderCartItem(product, index){
+    const renderCartItem = (product, index) => {
         return (
             <div className='cart-item-wrapper' key={index}>
                 <div className='cart-item-info'>
@@ -72,9 +48,9 @@ class Cart extends React.Component{
                     </div>
                 </div>
                 <div className='cart-item-quantity'>
-                    <button className='cart-item-quantity-change cart-item-quantity-minus' onClick={() => this.changeItemQuantity(product, 'minus')}>-</button>
+                    <button className='cart-item-quantity-change cart-item-quantity-minus' onClick={() => dispatch(decreaseProductQuantity(product))}>-</button>
                     <span>{product.quantity}</span>
-                    <button className='cart-item-quantity-change cart-item-quantity-plus' onClick={() => this.changeItemQuantity(product, 'plus')}>+</button>
+                    <button className='cart-item-quantity-change cart-item-quantity-plus' onClick={() => dispatch(increaseProductQuantity(product))}>+</button>
                 </div>
                 <div className='cart-item-total-price'>
                     <span>{product.quantity * product.price}</span>
@@ -84,41 +60,38 @@ class Cart extends React.Component{
         )
     }
 
-    render(){
-        
-        let footer = null;
+    let footer = null;
 
-        if (this.state.cart !== undefined && this.state.cart.length !== 0){
-            let totalPrice = this.state.cart.reduce((prev, curr) => prev + curr.price * curr.quantity, 0);
+    if (cart !== undefined && cart.length !== 0){
+        let totalPrice = cart.products.reduce((prev, curr) => prev + curr.price * curr.quantity, 0);
 
-            footer = (<div className='cart-list-footer'>
-                        <div className='cart-total-price'>
-                            <span>Итого: </span>
-                            <span>{totalPrice}</span>
-                            <span>RUB</span>
-                        </div>
-                        <button className='cart-list-checkout'>Оформить</button>
-                    </div>);
-        }
-        else{
-            footer = (
-                <span>Корзина пуста</span>
-            )
-        }
-
-        return (
-            <>
-                <div className='cart-item-list'>
-                    {this.state.cart.map((item, index) => {
-                        return this.renderCartItem(item, index);
-                    })}
-                </div>
-                {footer}
-                
-            </>
-            
-        );
+        footer = (<div className='cart-list-footer'>
+                    <div className='cart-total-price'>
+                        <span>Итого: </span>
+                        <span>{totalPrice}</span>
+                        <span>RUB</span>
+                    </div>
+                    <button className='cart-list-checkout'>Оформить</button>
+                </div>);
     }
+    else{
+        footer = (
+            <span>Корзина пуста</span>
+        )
+    }
+
+    return (
+        <>
+            <div className='cart-item-list'>
+                {cart.products.map((item, index) => {
+                    return renderCartItem(item, index);
+                })}
+            </div>
+            {footer}
+            
+        </>
+        
+    );
 }
 
 export default Cart;

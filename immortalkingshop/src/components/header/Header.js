@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from "../../img/imortal_king_logo.svg";
+import CartFab from '../cart/fab/CartFab';
 import './Header.css';
 
 class Header extends React.Component

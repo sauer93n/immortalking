@@ -3,6 +3,10 @@
     src: url('../../fonts/RoadRage/roadrage.ttf');
 }
 
+.header{
+    height: 58px;
+}
+
 .navigation-bar__wrapper{
     max-width: 1920px;
     width: 100%;

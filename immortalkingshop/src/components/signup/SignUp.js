@@ -1,72 +1,61 @@
-import React from 'react';
-import {TextField, FormGroup, OutlinedInput, Paper, Grid, Button, FormLabel} from '@mui/material';
-import { Box } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { TextField, Paper, Grid, Button, FormLabel } from '@mui/material';
+import { useRegisterUserMutation } from '../../features/user/userSlice';
 
 
-class SignUp extends React.Component{
-    constructor(props){
-        super(props);
+function SignUp(props) {
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ repeatPassword, setRepeatPassword ] = useState('');
+    const [ helperText, setHelperText ] = useState('');
+    const [ error, setError ] = useState(false);
+    const [ registerUser, result ] = useRegisterUserMutation();
+    
+    useEffect(() => {
+        if (password !== repeatPassword){
+            setHelperText('Passwords does not match!');
+            setError(true);
+        }
+        else{
+            setHelperText('');
+            setError(false);
+        }
+    })
 
-        this.state = {
-            email: "",
-            password: "",
-            "repeat-password": "",
-            helperText: "",
-            error: false,
-        };
-    }
-
-    handleChange(e){
-        if (e.target.id === "password" || e.target.id === "repeat-password"){
-            console.log(this.state.password);
-            console.log(this.state["repeat-password"]);
-
-            if (this.state.password !== this.state["repeat-password"]){
-                this.setState({
-                    helperText: "Passwords does not match",
-                    error: true,
-                })
-            }
-            else {
-                this.setState({
-                    helperText: "",
-                    error: false,
-                })
-            }
+    const submit = (e) => {
+        let user = {
+            email,
+            password,
         }
 
         
-        this.setState({
-            [e.target.id]: e.target.value,
-        })
+        registerUser(user);
     }
 
-    render() {
-        return (
-            <>
-            <Paper variant="elevation" sx={{
-                px: 15,
-                py: 10,
-            }}>
-                <Grid container justify="center" direction="column">
-                    <FormLabel>SignUp</FormLabel>
-                    <Grid item>
-                        <TextField id="email" label="E-mail" fullWidth type="email" variant="filled" color="primary" margin='normal' onChange={(e) => this.handleChange(e)}/>
-                    </Grid>
-                    <Grid item>
-                        <TextField id="password" label="Password" defaultValue={this.state.password} fullWidth type="password" variant="filled" color="primary" margin='normal' helperText={this.state.helperText} onChange={(e) => this.handleChange(e)} error={this.state.error}/>
-                    </Grid>
-                    <Grid item>
-                        <TextField id="repeat-password" defaultValue={this.state["repeat-password"]} label="Repeat password" fullWidth type="password" variant="filled" color="primary" margin='normal' helperText={this.state.helperText} onChange={(e) => this.handleChange(e)} error={this.state.error}/>
-                    </Grid>
-                    <Button variant="contained" color="primary" type="submit">
-                        Submit
-                    </Button>
+    return (
+        <>
+        <Paper variant='elevation' sx={{
+            px: 15,
+            py: 10,
+        }}>
+            <Grid container justify='center' direction='column'>
+                <FormLabel>SignUp</FormLabel>
+                <Grid item>
+                    <TextField id='email' label='E-mail' defaultValue={email} fullWidth type='email' variant='filled' color='primary' margin='normal' onChange={(e) => setEmail(e.target.value)}/>
                 </Grid>
-            </Paper>
-            </>
-        )
-    }
+                <Grid item>
+                    <TextField id='password' label='Password' defaultValue={password} fullWidth type='password' variant='filled' color='primary' margin='normal' helperText={helperText} onChange={(e) => setPassword(e.target.value)} error={error}/>
+                </Grid>
+                <Grid item>
+                    <TextField id='repeatPassword' defaultValue={repeatPassword} label='Repeat password' fullWidth type='password' variant='filled' color='primary' margin='normal' helperText={helperText} onChange={(e) => setRepeatPassword(e.target.value)} error={error}/>
+                </Grid>
+                <Button variant='contained' color='primary' type='submit' onClick={(e) => submit(e)}>
+                    Submit
+                </Button>
+            </Grid>
+        </Paper>
+        </>
+    )
 }
 
 

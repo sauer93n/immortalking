@@ -12,15 +12,15 @@ export const usersApi = createApi({
             body: user,
         })
     }),
-    loginUser: builder.query({
+    loginUser: builder.mutation({
         query: user => ({
-            url: `/users/${user.email}`,
-            method: 'GET',
+            url: `/users/login`,
+            method: 'POST',
             body: user,
         })
     })
   })
 })
 
-export const { useRegisterUserMutation } = usersApi
+export const { useRegisterUserMutation, useLoginUserMutation } = usersApi
 

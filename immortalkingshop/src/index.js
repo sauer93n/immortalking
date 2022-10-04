@@ -12,6 +12,7 @@ import ProductGrid from "./components/product-grid/ProductGrid";
 import SignUp from './components/signup/SignUp';
 import store from './store';
 import {Provider} from 'react-redux';
+import Login from './components/login/Login';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,6 +28,9 @@ root.render(
                   </Route>
                   <Route path="signup/">
                       <Route index element={<SignUp/>}></Route>
+                  </Route>
+                  <Route path="login/">
+                      <Route index element={<Login/>}></Route>
                   </Route>
               </Route>
           </Routes>

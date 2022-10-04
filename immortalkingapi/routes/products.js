@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
     productModel.find((err, docs) => {
         if (err){
-            res.send("АШЫБКА");
+            res.sendStatus(404);
         }
         else{
             res.json(docs);
@@ -28,7 +28,7 @@ router.get('/:id', function(req, res, next) {
 
     productModel.findOne({"_id": ObjectId(req.params.id)}, (err, doc) => {
         if (err){
-            res.send("АШЫБКА");
+            res.sendStatus(404);
         }
         else{
             res.json(doc);

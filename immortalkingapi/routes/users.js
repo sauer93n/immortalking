@@ -1,36 +1,14 @@
 var express = require('express');
 var router = express.Router();
+const tokenService = require('../services/token-service');
+const UserDTO = require('../dtos/UserDTO');
 
-const {userModel} = require('../models/models');
+const {userModel, tokenModel} = require('../models/models');
+const UserController = require('../controllers/UserController');
 
 /* GET users listing. */
-router.get('/:email', function(req, res, next) {
-  userModel.findOne({email: req.params.email}, function(err, user){
-    if (err) return res.status(404).send('User with provided email not found :(');
+router.post('/login', UserController.login);
 
-    user.comparePasswords(req.body.password, function(err, isMatch){
-      if (err) return res.status(500).send("Wrong password");
-
-      if (isMatch) return res.status(200).send("Success");
-    })
-  })
-});
-
-router.post('/', (req, res, next) => {
-  console.log(req.body);
-
-  userModel.findOne({email: req.body.email}, function(err, user){
-    if (user) return res.status(500).send('user with provided email already exist');
-
-    // console.log(user);
-
-    let newUser = new userModel({
-      email: req.body.email,
-      password: req.body.password,
-    })
-  
-    newUser.save();
-  })
-})
+router.post('/register', UserController.register)
 
 module.exports = router;

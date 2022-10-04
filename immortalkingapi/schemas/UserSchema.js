@@ -1,5 +1,4 @@
 const { Schema } = require("mongoose");
-const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 
 const User = new Schema({
@@ -28,12 +27,8 @@ User.pre('save', function(next){
     })
 })
 
-User.methods.comparePasswords = (password, callback) => {
-    bcrypt.compare(password, this.password, (err, isMatch) => {
-        if (err) return callback(err);
-
-        callback(null, isMatch);
-    })
+User.methods.comparePasswords = function(password) {
+    return bcrypt.compare(password, this.password);
 }
 
 module.exports = User;

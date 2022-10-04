@@ -15,16 +15,4 @@ const Product = new Schema({
     sizes: Object,
 });
 
-// id: uuid.v4(),
-//     picture: "akashi_red.png",
-//     type: "t-shirt",
-//     desc: "ракузан в обновленном двуцветном дизайне",
-//     name: "rakuzan string",
-//     bigPicture: "akashi_red_415px.png",
-//     printType: "вышитый рисунок",
-//     cutType: "оверсайз крой",
-//     clothType: "кулирная ткань 95 + 5 плотность 200гр",
-
-// let model = mongoose.model("Product", Product);
-
 module.exports = Product;
